@@ -1,5 +1,4 @@
 import React from "react";
-import Time from "./Time";
 
 const { useState, useEffect } = React;
 
@@ -171,10 +170,6 @@ function App() {
         <div>bitcoin time</div>
         <div className="lg:text-9xl sm:text-9xl text-8xl">
           {data.blockHeight?.replace(/,/g, "")}
-        </div>
-        <div className="pt-3">solar time</div>
-        <div className="lg:text-8xl sm:text-8xl text-7xl">
-          <Time></Time>
         </div>
       </div>
       {/* Metrics Grid */}
