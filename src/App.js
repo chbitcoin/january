@@ -4,7 +4,7 @@ const { useState, useEffect } = React;
 
 // Metrics Card Component
 const MetricsCard = ({ title, value }) => (
-  <div className="bg-opacity-50 p-2 rounded-lg shadow-md hover:bg-gray-900 font-sans">
+  <div className="bg-opacity-50 p-2 rounded-lg shadow-md hover:bg-gray-900 font">
     <h3 className="text-xs text-gray-400">{title}</h3>
     <p className="text-base">{value}</p>
   </div>
@@ -166,14 +166,13 @@ function App() {
           Error: {error}. Please try again later.
         </div>
       )}
-      <div className="text-center pt-5 font-sans text-xl">
-        <div>bitcoin time</div>
-        <div className="lg:text-9xl sm:text-9xl text-8xl">
+      <div className="box">
+        <div className="lg:text-[10em] sm:text-9xl text-8xl p-5">
           {data.blockHeight?.replace(/,/g, "")}
         </div>
       </div>
       {/* Metrics Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-2 p-10 text-center font-sans">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-2 p-6 text-center font">
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
           <h1>Market</h1>
           <MetricsCard
