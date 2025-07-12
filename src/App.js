@@ -172,7 +172,6 @@ function App() {
 
   const toggleMillions = () => {
     setMillions(!millions);
-    console.log("Set millions to " + millions);
   };
 
   return (
