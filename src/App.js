@@ -35,6 +35,7 @@ function App() {
     issuedSupply: "Loading...",
   });
   const [error, setError] = useState(null);
+  const [millions, setMillions] = useState(false);
 
   // Fetch data from mempool.space API
   useEffect(() => {
@@ -159,6 +160,21 @@ function App() {
     return totalSupply;
   };
 
+  const formatPrice = (price) => {
+    const num = parseFloat(price);
+    if (isNaN(num)) return price; // Fallback for "Loading..." or "Error"
+    if (millions) {
+      return (num / 1000000).toFixed(2) + "M";
+    } else {
+      return num.toLocaleString();
+    }
+  };
+
+  const toggleMillions = () => {
+    setMillions(!millions);
+    console.log("Set millions to " + millions);
+  };
+
   return (
     <div>
       {error && (
@@ -174,34 +190,52 @@ function App() {
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-2 p-6 text-center font">
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
-          <h1>Market</h1>
+          <div className="flex flex-col">
+            <h1 className="mb-1">Fiat</h1> {/* Slight margin for tidiness */}
+            <div className="flex items-center justify-center space-x-2">
+              {/* Centered for balance */}
+              <label
+                className="switch"
+                title="Toggle between normal notation (e.g., 110,000) and millions notation (e.g., 0.11M)"
+              >
+                <input
+                  type="checkbox"
+                  checked={millions}
+                  onChange={toggleMillions}
+                />
+                <span className="slider"></span>
+              </label>
+              <span className="text-xs text-gray-400">millions</span>{" "}
+              {/* Abbreviated for minimalism */}
+            </div>
+          </div>
           <MetricsCard
             title="USD per bitcoin"
-            value={parseFloat(data.price).toLocaleString()}
+            value={formatPrice(data.price)}
           />
           <MetricsCard
             title="EUR per bitcoin"
-            value={parseFloat(data.priceEUR).toLocaleString()}
+            value={formatPrice(data.priceEUR)}
           />
           <MetricsCard
             title="GBP per bitcoin"
-            value={parseFloat(data.priceGBP).toLocaleString()}
+            value={formatPrice(data.priceGBP)}
           />
           <MetricsCard
             title="CAD per bitcoin"
-            value={parseFloat(data.priceCAD).toLocaleString()}
+            value={formatPrice(data.priceCAD)}
           />
           <MetricsCard
             title="CHF per bitcoin"
-            value={parseFloat(data.priceCHF).toLocaleString()}
+            value={formatPrice(data.priceCHF)}
           />
           <MetricsCard
             title="AUD per bitcoin"
-            value={parseFloat(data.priceAUD).toLocaleString()}
+            value={formatPrice(data.priceAUD)}
           />
           <MetricsCard
             title="JPY per bitcoin"
-            value={parseFloat(data.priceJPY).toLocaleString()}
+            value={formatPrice(data.priceJPY)}
           />
         </div>
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
