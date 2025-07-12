@@ -190,22 +190,19 @@ function App() {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-2 p-6 text-center font">
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
           <div className="flex flex-col">
-            <h1 className="mb-1">Fiat</h1> {/* Slight margin for tidiness */}
-            <div className="flex items-center justify-center space-x-2">
-              {/* Centered for balance */}
-              <label
-                className="switch"
+            <div className="flex items-center justify-center space-x-2 mb-1">
+              <h1>Fiat</h1>
+              <button
+                onClick={toggleMillions}
+                className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-200 ${
+                  millions
+                    ? "bg-[#FF9900] text-white shadow-md"
+                    : "bg-gray-700 text-gray-400"
+                }`}
                 title="Toggle between normal notation (e.g., 110,000) and millions notation (e.g., 0.11M)"
               >
-                <input
-                  type="checkbox"
-                  checked={millions}
-                  onChange={toggleMillions}
-                />
-                <span className="slider"></span>
-              </label>
-              <span className="text-xs text-gray-400">millions</span>{" "}
-              {/* Abbreviated for minimalism */}
+                M
+              </button>
             </div>
           </div>
           <MetricsCard
