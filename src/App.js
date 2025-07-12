@@ -199,7 +199,7 @@ function App() {
                     ? "bg-[#FF9900] text-white shadow-md"
                     : "bg-gray-700 text-gray-400"
                 }`}
-                title="Toggle between normal notation (e.g., 110,000) and millions notation (e.g., 0.11M)"
+                title="Display fiat values in millions"
               >
                 M
               </button>
