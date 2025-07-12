@@ -235,7 +235,7 @@ function App() {
           />
         </div>
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
-          <h1>Lightning network</h1>
+          <h1>Lightning</h1>
           <MetricsCard
             title="Lightning channel count"
             value={parseFloat(data.lnChannelCount).toLocaleString()}
