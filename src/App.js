@@ -263,10 +263,8 @@ function App() {
             value={parseFloat(data.lnUnknownNodes).toLocaleString()}
           />
           <MetricsCard
-            title="Lightning nodes % Tor"
-            value={
-              ((data.lnTorNodes / data.lnNodeCount) * 100).toFixed(1) + "%"
-            }
+            title="Tor Lightning nodes (%)"
+            value={((data.lnTorNodes / data.lnNodeCount) * 100).toFixed(1)}
           />
         </div>
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
@@ -294,15 +292,16 @@ function App() {
               parseFloat(data.issuedSupply?.replace(/,/g, "")).toFixed(0) * 1
             ).toLocaleString()}
           />
-          <MetricsCard title="Hashrate" value={data.hashrate} />
           <MetricsCard
-            title="Issued %"
-            value={
-              (
-                (parseFloat(data.issuedSupply?.replace(/,/g, "")) / 21000000) *
-                100
-              ).toFixed(1) + "%"
-            }
+            title="Issued (%)"
+            value={(
+              (parseFloat(data.issuedSupply?.replace(/,/g, "")) / 21000000) *
+              100
+            ).toFixed(1)}
+          />
+          <MetricsCard
+            title="Hashrate (EH/s)"
+            value={data.hashrate.split(" ")[0]}
           />
           <MetricsCard
             title="Difficulty"
@@ -342,15 +341,12 @@ function App() {
             ).toLocaleString()}
           />
           <MetricsCard
-            title="Bitcoin vs gold market cap"
-            value={
-              (
-                ((parseFloat(data.issuedSupply?.replace(/,/g, "")) *
-                  data.price) /
-                  (6850000000 * data.goldPrice)) *
-                100
-              ).toFixed(2) + "%"
-            }
+            title="Bitcoin vs gold market cap (%)"
+            value={(
+              ((parseFloat(data.issuedSupply?.replace(/,/g, "")) * data.price) /
+                (6850000000 * data.goldPrice)) *
+              100
+            ).toFixed(2)}
           />
           <MetricsCard
             title="USD per bitcoin @ gold market cap"
