@@ -364,7 +364,35 @@ function App() {
             ).toLocaleString()}
           />
         </div>
-      </div>
+      </div>{" "}
+      <footer className="pb-10 text-center text-gray-400 text-sm">
+        <div className="flex justify-center space-x-6">
+          <a
+            href="https://x.com/coldhardbtc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#FF9900] transition-colors"
+          >
+            X
+          </a>
+          <a
+            href="https://bitcoin.org/bitcoin.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#FF9900] transition-colors"
+          >
+            Whitepaper
+          </a>
+          <a
+            href="https://mempool.space/docs/api/rest"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#FF9900] transition-colors"
+          >
+            API
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
