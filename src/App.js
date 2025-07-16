@@ -97,8 +97,6 @@ function App() {
           lnNodeCount: `${lnData.latest.node_count}`,
           lnCapacity: `${lnData.latest.total_capacity}`,
           lnTorNodes: `${lnData.latest.tor_nodes}`,
-          lnClearNodes: `${lnData.latest.clearnet_nodes}`,
-          lnUnknownNodes: `${lnData.latest.unannounced_nodes}`,
           transactionCount: mempoolData.count.toLocaleString(),
           hashrate: `${(hashrateData.currentHashrate / 1e18).toFixed(2)} EH/s`,
           difficulty: `${hashrateData.currentDifficulty}`,
@@ -125,8 +123,6 @@ function App() {
           lnNodeCount: "Error",
           lnCapacity: "Error",
           lnTorNodes: "Error",
-          lnClearNodes: "Error",
-          lnUnknownNodes: "Error",
           transactionCount: "Error",
           hashrate: "Error",
           difficulty: "Error",
@@ -237,33 +233,33 @@ function App() {
         <div className="border-solid border rounded-xl border-gray-800 2xl:p-4 2xl:m-3 xl:p-4 xl:m-3 lg:p-4 lg:m-3 md:p-3 md:m-2 sm:p-2 sm:m-2 p-3 m-1">
           <h1>Lightning</h1>
           <MetricsCard
-            title="Lightning channel count"
-            value={parseFloat(data.lnChannelCount).toLocaleString()}
-          />
-          <MetricsCard
-            title="Lightning node count"
-            value={parseFloat(data.lnNodeCount).toLocaleString()}
-          />
-          <MetricsCard
-            title="Lightning total capacity (BTC)"
+            title="Total capacity (BTC)"
             value={parseFloat(
               (data.lnCapacity / 100000000).toFixed(0)
             ).toLocaleString()}
           />
           <MetricsCard
-            title="Lightning Tor nodes"
-            value={parseFloat(data.lnTorNodes).toLocaleString()}
+            title="Channel count"
+            value={parseFloat(data.lnChannelCount).toLocaleString()}
           />
           <MetricsCard
-            title="Lightning clearnet nodes"
-            value={parseFloat(data.lnClearNodes).toLocaleString()}
+            title="Ave. channel capacity (sats)"
+            value={parseFloat(
+              (data.lnCapacity / data.lnChannelCount).toFixed(0)
+            ).toLocaleString()}
           />
           <MetricsCard
-            title="Lightning unknown nodes"
-            value={parseFloat(data.lnUnknownNodes).toLocaleString()}
+            title="Node count"
+            value={parseFloat(data.lnNodeCount).toLocaleString()}
           />
           <MetricsCard
-            title="Tor Lightning nodes (%)"
+            title="Ave. node capacity (sats)"
+            value={parseFloat(
+              (data.lnCapacity / data.lnNodeCount).toFixed(0)
+            ).toLocaleString()}
+          />
+          <MetricsCard
+            title="Tor nodes (%)"
             value={((data.lnTorNodes / data.lnNodeCount) * 100).toFixed(1)}
           />
         </div>
@@ -293,7 +289,7 @@ function App() {
             ).toLocaleString()}
           />
           <MetricsCard
-            title="Issued (%)"
+            title="Issued supply (%)"
             value={(
               (parseFloat(data.issuedSupply?.replace(/,/g, "")) / 21000000) *
               100
@@ -314,6 +310,19 @@ function App() {
                 parseFloat(data.blockHeight?.replace(/,/g, "")) / 210000
               ) + 1
             }
+          />
+          <MetricsCard
+            title="Halving progress (%)"
+            value={(
+              (((Math.floor(
+                parseFloat(data.blockHeight?.replace(/,/g, "")) / 210000
+              ) +
+                1) *
+                210000 -
+                parseFloat(data.blockHeight?.replace(/,/g, ""))) /
+                210000) *
+              100
+            ).toFixed(1)}
           />
           <MetricsCard
             title="Difficulty epoch"
